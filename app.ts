@@ -13,6 +13,32 @@ var npmTopPackagesUrl = "https://raw.githubusercontent.com/nexdrew/all-stars/mas
 var numProcessed = 0;
 var NUM_PACKAGES_TO_SHOW = 10;
 
+server.get("/contributors/:package", function(req, res, next) {
+	var github = new GitHubApi({
+		version: "3.0.0"
+	});
+	npm.packages.get(req.params.package, function(err, packageDetails) {
+    if (err)
+      return next(err);
+
+		var gitHubInfo = packageDetails[0].github;
+		github.repos.getContributors(
+			{
+				user: gitHubInfo.user,
+				repo: gitHubInfo.repo,
+				per_page: 10
+			}, function(err, response) {
+        if (err)
+          return next(err);
+
+				res.send(response);
+			}
+		);
+  });
+	next();
+});
+
+
 server.get("/packages", function(req, res, next) {
 	request({ uri: npmTopPackagesUrl, json: true }, function(error, response, packages) {
     console.log(packages)
