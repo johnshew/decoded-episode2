@@ -66,10 +66,5 @@ server.get(/.*/, restify.serveStatic({
 	default: 'decoded.html'
 }));
 
-server.get("/hello", (req, res, next) => {
-	res.send("Hello");
-	next();
-});
-
 server.listen(3000);
 
