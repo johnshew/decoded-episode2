@@ -66,7 +66,7 @@ function renderRepos(repos) {
 }
 function getRepos() {
 	$.ajax({
-		url: "/packagess",
+		url: "/packages",
 		success: function(result) {
 			renderRepos(result);
 		}
