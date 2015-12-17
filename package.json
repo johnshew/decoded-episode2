@@ -1,0 +1,18 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "decoded",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "restify": "^4.0.3"
+  },
+  "devDependencies": {
+    "tsd": "^0.6.5",
+    "typescript": "^1.7.5"
+  }
+}
