@@ -4,11 +4,17 @@
   "description": "decoded",
   "main": "app.js",
   "scripts": {
+    "start": "npm run build && node app.js",
+    "init": "tsd install",
+    "build": "tsc -p . || true",
+    "install": "npm run init && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "github": "^0.2.4",
+    "npm-registry": "^0.1.13",
     "restify": "^4.0.3"
   },
   "devDependencies": {
