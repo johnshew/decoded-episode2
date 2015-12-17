@@ -61,6 +61,11 @@ server.get("/packages", function(req, res, next) {
   });
 });
 
+server.get(/.*/, restify.serveStatic({
+	directory: __dirname,
+	default: 'decoded.html'
+}));
+
 server.get("/hello", (req, res, next) => {
 	res.send("Hello");
 	next();
