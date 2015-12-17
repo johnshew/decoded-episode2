@@ -62,10 +62,17 @@ server.get("/packages", function(req, res, next) {
 
 var fs = require('fs');
 var decodedHtml = fs.readFileSync('decoded.html');
+var clientJS = fs.readFileSync('client.js');
 server.get('/', function (req, res, next) {
+  res.setHeader('content-type', 'text/html');
   res.end(decodedHtml);
   next();
 });
+server.get('/client.js', function (req, res, next) {
+  res.setHeader('content-type', 'application/javascript');
+  res.end(clientJS)
+  next()
+})
 
 server.listen(3000);
 
