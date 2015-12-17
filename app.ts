@@ -41,7 +41,6 @@ server.get("/contributors/:package", function(req, res, next) {
 
 server.get("/packages", function(req, res, next) {
 	request({ uri: npmTopPackagesUrl, json: true }, function(error, response, packages) {
-    console.log(packages)
 		numProcessed = 0;
 		var packageNames = Object.keys(packages).slice(0, NUM_PACKAGES_TO_SHOW);
 		var payload = [];
@@ -61,10 +60,12 @@ server.get("/packages", function(req, res, next) {
   });
 });
 
-server.get(/.*/, restify.serveStatic({
-	directory: __dirname,
-	default: 'decoded.html'
-}));
+var fs = require('fs');
+var decodedHtml = fs.readFileSync('decoded.html');
+server.get('/', function (req, res, next) {
+  res.end(decodedHtml);
+  next();
+});
 
 server.listen(3000);
 
